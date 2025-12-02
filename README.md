@@ -26,7 +26,7 @@ Visit the [documentation site](https://sans-theme.pages.dev/doc/) to see the the
 Add the theme as a git submodule to your Hugo project:
 
 ```bash
-git submodule add https://github.com/samaya_sharma/sans.git themes/sans
+git submodule add https://github.com/psugam/sans.git themes/sans
 ```
 
 ### Method 2: Clone
@@ -35,7 +35,7 @@ Clone the theme directly into your themes directory:
 
 ```bash
 cd themes
-git clone https://github.com/samaya_sharma/sans.git
+git clone https://github.com/psugam/sans.git
 ```
 
 ### Method 3: Hugo Modules
@@ -43,7 +43,7 @@ git clone https://github.com/samaya_sharma/sans.git
 Initialize your Hugo site as a module and import the theme:
 
 ```bash
-hugo mod init github.com/samaya_sharma/sans
+hugo mod init github.com/psugam/sans
 ```
 
 Then add to your` hugo.toml`:
@@ -51,7 +51,7 @@ Then add to your` hugo.toml`:
 ```toml
 [module]
   [[module.imports]]
-    path = "github.com/samaya_sharma/sans"
+    path = "github.com/psugam/sans"
 ```
 
 ### Activate the Theme
@@ -205,7 +205,7 @@ Topics covered:
 If you encounter any issues or have questions:
 
 - Check the [documentation](https://sans-theme.pages.dev/doc/)
-- Open an issue on [GitHub](https://github.com/samaya_sharma/sans/issues)
+- Open an issue on [GitHub](https://github.com/psugam/sans/issues)
 
 ## License
 
