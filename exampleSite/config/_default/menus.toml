@@ -1,0 +1,17 @@
+  [[main]]
+    name = 'Home'
+    pageRef = '/'
+    weight = 10
+
+
+   [[main]]
+    name = 'About'
+    pageRef ='/pages/about/'
+    weight = 50 
+
+  [[main]]
+    name='Docs'
+    identifier='guides'
+    url='/doc/'
+    weight=70
+  

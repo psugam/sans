@@ -1,0 +1,114 @@
+[homepage]
+  onlyPostsInHomePage = false
+  homePageLogo=true
+  homePageTitle="SANS hugo Theme"
+  homePageTagLine=""
+  homePageLogoPath='images/avatar.png'
+  homePageAbout="This is a brief documentation for SANS Hugo theme. SANS is a minimal theme for Hugo."
+ 
+  homePageCoverPath='image1.png'
+  homePageCoverTitle="Welcome to our blog and portfolio."
+  homePageCoverTagLine="Discover insights, stories, and ideas that inspire. Join our community of readers exploring the latest trends and timeless wisdom.SUGAM"
+  homePageSummaryLength=500
+  homePagePostDate=false        
+  dateFormat= "2 Jan 2006"
+  showSocialLinksHome=false
+
+[fonts]
+  siteFont="Georgia, UnifrakturMaguntia, serif"
+
+[social]
+  facebook = 'https://facebook.com/yourpage'
+  x = 'https://x.com/yourhandle'
+  # instagram = 'https://instagram.com/yourhandle'
+  # linkedin = 'https://linkedin.com/in/yourprofile'
+  # youtube = 'https://youtube.com/@yourchannel'
+  # tiktok = 'https://tiktok.com/@yourhandle'
+  github = 'https://github.com/yourusername'
+  # reddit = 'https://reddit.com/u/yourusername'
+  # pinterest = 'https://pinterest.com/yourhandle'
+  # snapchat = 'https://snapchat.com/add/yourhandle'
+  # discord = 'https://discord.gg/yourinvite'
+  # twitch = 'https://twitch.tv/yourchannel'
+  # telegram = 'https://t.me/yourhandle'
+  # whatsapp = 'https://wa.me/yourphonenumber'
+  # mastodon = 'https://mastodon.social/@yourhandle'
+  bluesky = 'https://bsky.app/profile/yourhandle'
+  # threads = 'https://threads.net/@yourhandle'
+  # medium = 'https://medium.com/@yourhandle'
+
+[theme]
+  showDarkModeToggle=true
+  showSearchIcon=true
+  showGoToTop=true
+  darkModeColor='#333333'
+  lightModeColor="white"
+  darkModeLinkColor='#CCCCCC'
+  lightModeLinkColor='#00e'
+  heroSectionColor='white' 
+  darkHeroSectionColor="black"
+  lightModeButton = "#007bff"
+  lightModeButtonText = "#ffffff"
+  lightModeButtonAlt = "transparent"
+  lightModeButtonAltText = "#007bff"
+  darkModeButton = "#0d6efd"
+  darkModeButtonText = "#ffffff"
+  darkModeButtonAlt = "transparent"
+  darkModeButtonAltText = "#4d9aff"
+
+
+[toc]
+  numberingInTOC=false
+  numberingInPost=false
+
+[posts]
+  readingSpeed=212
+  showFrontMatter=true
+  showDate=true
+  showWordCount=true
+  showAuthors=true
+  showTags=true
+  showCategories=true
+  showReadingTime=true
+  dateFormat="2 Jan 2006"
+  showTagCloud=false
+  showCategoryCloud=false
+  showAuthorCloud=false
+[rss]
+  showRSS=false
+
+[about]
+  showSocialLinksPage=false
+
+[sections]
+  showDate=true
+  showTags=false
+  showCategories=true
+  showAuthors=false
+  showCoverImage=false
+  showSummary=false
+  showReadMore=false
+  summaryLength=500
+  dateFormat="2006-01-02"
+
+ [slideshow]
+  maxSize=20 
+
+  [giscus]
+enable=false
+src="https://giscus.app/client.js"
+  dataRepo="psugam/sans-theme"
+        dataRepoId="R_kgDOQHNo3Q"
+        dataCategory="Announcements"
+        dataCategoryId="DIC_kwDOQHNo3c4CxQcB"
+        dataMapping="pathname"
+        dataStrict="0"
+        dataReactionsEnabled="1"
+        dataEmitMetadata="0"
+        dataInputPosition="bottom"
+        dataTheme="preferred_color_scheme"
+        dataLang="en"
+        dataLoading="lazy"
+        crossorigin="anonymous"
+
+
