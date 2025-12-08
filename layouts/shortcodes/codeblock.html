@@ -2,19 +2,21 @@
 <div class="custom-code-block-wrapper" data-lang="{{ $lang }}">
   <div class="custom-code-toolbar">
     <span class="code-lang-label">{{ upper $lang }}</span>
-    <button class="copy-code-btn" onclick="copyCode(this)"> Copy</button>
+    <button class="copy-code-btn" onclick="copyCode(this)">Copy</button>
   </div>
-  {{ highlight (trim .Inner "\n\r") $lang "style=monokai" }}
+  {{ highlight (trim .Inner "\n\r") $lang "style=monokai,linenos=true" }}
 </div>
-
-
 <script>
-  // CODEBLOCK COPY CODE FUNCTIONALITY
   function copyCode(btn) {
     const wrapper = btn.closest(".custom-code-block-wrapper");
-    const code = wrapper.querySelector("code").innerText;
-    navigator.clipboard.writeText(code);
-    btn.textContent = " Copied";
-    setTimeout(() => (btn.textContent = " Copy"), 1500);
+
+    const lines = wrapper.querySelectorAll("code .line");
+    let code = "";
+    lines.forEach((line) => {
+      code += line.innerText + "\n";
+    });
+    navigator.clipboard.writeText(code.trim());
+    btn.textContent = "Copied";
+    setTimeout(() => (btn.textContent = "Copy"), 1500);
   }
 </script>
