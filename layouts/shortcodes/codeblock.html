@@ -9,14 +9,28 @@
 <script>
   function copyCode(btn) {
     const wrapper = btn.closest(".custom-code-block-wrapper");
+    const codeElement = wrapper.querySelector("code");
 
-    const lines = wrapper.querySelectorAll("code .line");
-    let code = "";
-    lines.forEach((line) => {
-      code += line.innerText + "\n";
-    });
-    navigator.clipboard.writeText(code.trim());
+    let textToCopy = "";
+    const codeTable = wrapper.querySelector("table");
+
+    if (codeTable) {
+      const rows = codeTable.querySelectorAll("tr");
+      textToCopy = Array.from(rows)
+        .map((row) => {
+          const cells = row.querySelectorAll("td");
+          return cells.length > 1 ? cells[1].innerText : cells[0].innerText;
+        })
+        .join("");
+    } else {
+      const clone = codeElement.cloneNode(true);
+      clone.querySelectorAll(".ln, .lnt").forEach((num) => num.remove());
+      textToCopy = clone.innerText;
+    }
+
+    navigator.clipboard.writeText(textToCopy.trim());
+    const originalText = btn.innerHTML;
     btn.textContent = "Copied";
-    setTimeout(() => (btn.textContent = "Copy"), 1500);
+    setTimeout(() => (btn.innerHTML = originalText), 1500);
   }
 </script>
