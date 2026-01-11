@@ -1,120 +1,70 @@
-  {{ define "main" }}
+{{ define "main" }}
 <div class="posts-info-box">
-<h1>{{ .Title }}</h1>
-  {{ .Content }} 
+  <h1>{{ .Title }}</h1>
+  {{ .Content }}
 </div>
-{{ $pages := .RegularPages }}
-{{$paginator := .Paginate $pages }} 
-  {{ range $paginator.Pages }}
-
+{{ $pages := .RegularPages }} {{$paginator := .Paginate $pages }} {{ range
+$paginator.Pages }}
 
 <div class="section-main-box">
+  <h2 id="section-post-title">
+    <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+  </h2>
 
+  <div class="section-meta-data-div">
+    {{ if .Site.Params.sections.showDate }} {{ $dateMachine := .Date.Format
+    "2006-01-02T15:04:05-07:00" }} {{ $dateHuman := .Date.Format
+    .Site.Params.sections.dateFormat }}
+    <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
+    {{ end }}
 
-<h2 id="section-post-title"><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
+    <div class="section-taxonomies">
+      {{if .Site.Params.sections.showTags}} {{ partial "terms.html" (dict
+      "taxonomy" "tags" "page" .) }} {{end}}
+    </div>
 
-<div class="section-meta-data-div">
+    <div class="section-taxonomies">
+      {{if .Site.Params.sections.showCategories}} {{ partial "terms.html" (dict
+      "taxonomy" "categories" "page" .) }} {{end}}
+    </div>
 
-{{ if .Site.Params.sections.showDate }}
-  {{ $dateMachine := .Date.Format "2006-01-02T15:04:05-07:00" }}
-  {{ $dateHuman := .Date.Format .Site.Params.sections.dateFormat }}
-  <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
-{{ end }}
+    <div class="section-taxonomies">
+      {{if .Site.Params.sections.showAuthors}} {{ partial "terms.html" (dict
+      "taxonomy" "authors" "page" .) }} {{end}}
+    </div>
+  </div>
 
-<div class="section-taxonomies">
-{{if .Site.Params.sections.showTags}}
-  {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
+  {{if .Site.Params.sections.showCoverImage}}
+  <div id="section-cover-image">
+    {{ $cover := "" }} {{ with .Params.cover }} {{ $cover = .image }} {{ end }}
+    {{ $imageResource := .Resources.GetMatch $cover }} {{ if $imageResource }}
+    <img src="{{ $imageResource.RelPermalink }}" alt="{{ .Title }}" />
+    {{ end }}
+  </div>
+  {{end}} {{$summaryLength := .Site.Params.sections.summaryLength}} {{ $plain :=
+  .Plain }} {{ $plain = $plain | truncate $summaryLength }} {{if
+  .Site.Params.sections.showSummary}}
+  <p>{{ $plain }}</p>
+  {{end}} {{if .Site.Params.sections.showReadMore}}
+  <p><a href="{{ .RelPermalink }}">Read more...</a></p>
   {{end}}
 </div>
-
-<div class="section-taxonomies">
-  {{if .Site.Params.sections.showCategories}}
-  {{ partial "terms.html" (dict "taxonomy" "categories" "page" .) }} 
-  {{end}}
-</div>
-
-<div class="section-taxonomies">
-  {{if .Site.Params.sections.showAuthors}}
-  {{ partial "terms.html" (dict "taxonomy" "authors" "page" .) }}
-  {{end}}
-</div>
-</div>
-
-
-{{if .Site.Params.sections.showCoverImage}}
-<div id="section-cover-image">
-        {{ $cover := "" }}
-
-{{ with .Params.cover }}
-  {{ $cover = .image }}
-{{ end }}
-
-{{ $imageResource := .Resources.GetMatch $cover }}
-
-
-{{ if $imageResource }}
-  <img src="{{ $imageResource.RelPermalink }}" alt="{{ .Title }}">
-{{ end }}
-
-
-</div>
-{{end}}
-
-
-{{$summaryLength := .Site.Params.sections.summaryLength}}
-
-{{ $plain := .RawContent }}
-{{ $plain = $plain | replaceRE `(?s)\{\{<\s*\w+[^>]*>\}\}.*?\{\{<\s*/\w+\s*>\}\}` "" }}
-{{ $plain = $plain | replaceRE `\{\{[^}]+\}\}` "" }}
-{{ $plain = $plain | replaceRE `(?m)^#+\s+.*$` "" }}
-{{ $plain = $plain | replaceRE `\[\^[^\]]+\]` "" }}
-{{ $plain = $plain | replaceRE `(?m)^\[\^[^\]]+\]:.*$` "" }}
-{{ $plain = $plain | plainify }}
-{{ $plain = $plain | replaceRE `\s+` " " | strings.TrimSpace }}
-{{ $plain = $plain | truncate $summaryLength }}
-{{if .Site.Params.sections.showSummary}}
-<p >{{ $plain }}</p>
-{{end}}
-
-{{if .Site.Params.sections.showReadMore}}
-<p><a href="{{ .RelPermalink }}">Read more...</a></p>
-{{end}}
-
-</div>
-{{ end }} 
-
-{{ if gt $paginator.TotalPages 1 }} 
- {{ $current := $paginator.PageNumber }} 
- {{ $start := sub $current 2}} 
- {{ $end := add $current 2 }} 
- {{ if lt $start 1 }}
- {{ $start = 1 }}
- {{ end }} 
- {{if gt $end $paginator.TotalPages }}
- {{ $end = $paginator.TotalPages }}
- {{ end }}
+{{ end }} {{ if gt $paginator.TotalPages 1 }} {{ $current :=
+$paginator.PageNumber }} {{ $start := sub $current 2}} {{ $end := add $current 2
+}} {{ if lt $start 1 }} {{ $start = 1 }} {{ end }} {{if gt $end
+$paginator.TotalPages }} {{ $end = $paginator.TotalPages }} {{ end }}
 
 <nav>
   {{ if $paginator.HasPrev }}
-  <a
-    href="{{ $paginator.Prev.URL }}"
-    >← Prev</a
-  >
+  <a href="{{ $paginator.Prev.URL }}">← Prev</a>
   {{ end }} {{ range $i := seq $start $end }} {{ $page := index
   $paginator.Pagers (sub $i 1) }} {{ if eq $i $current }}
   <span>{{ $i }}</span>
   {{ else }}
-  <a
-    href="{{ $page.URL }}"
-    >{{ $i }}</a
-  >
+  <a href="{{ $page.URL }}">{{ $i }}</a>
   {{ end }} {{ end }} {{ if $paginator.HasNext }}
-  <a
-    href="{{ $paginator.Next.URL }}"
-    >Next →</a
-  >
+  <a href="{{ $paginator.Next.URL }}">Next →</a>
   {{ end }}
 </nav>
 
-{{ end }}
-{{ end }}
+{{ end }} {{ end }}
